@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>آرشیوا</title>
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="fg_logo.png" type="image/png" />
+
+    <style>
+      body {
+        font-family: Vazir, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(160deg, #e0f7fa, #f0f6fb);
+        color: #333;
+        scroll-behavior: smooth;
+        transition: background 1s ease, color 1s ease;
+      }
+      section {
+        padding: 80px 20px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      section.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* === Hero with Gradient Animation === */
+      .hero {
+        background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+        color: white;
+        transition: background 1s ease;
+      }
+      .hero img {
+        width: 150px;
+        margin-bottom: 20px;
+        transition: all 0.8s ease;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+        transition: all 0.8s ease;
+      }
+      .hero p {
+        transition: all 0.8s ease;
+      }
+      .hero button {
+        margin-top: 20px;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 10px;
+        background: white;
+        color: #0077c2;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        font-family: Vazir;
+      }
+      .hero button:hover {
+        background: #e0f7fa;
+        transform: scale(1.05);
+      }
+
+      /* === Features === */
+      .features {
+        background: #e0f7fa;
+        transition: all 0.8s ease;
+      }
+      .features h2 {
+        margin-bottom: 40px;
+        color: #0077c2;
+        transition: all 0.8s ease;
+      }
+      .features-grid {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      .feature {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        width: 220px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        transition: all 0.5s ease;
+      }
+      .feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+      .feature i {
+        color: #0077c2;
+        margin-bottom: 10px;
+        transition: all 0.5s ease;
+      }
+      .feature:hover i {
+        color: #4fc3f7;
+      }
+
+      /* === Apps === */
+      .apps h2 {
+        margin-bottom: 30px;
+        color: #0077c2;
+        transition: all 0.5s ease;
+      }
+      .app-grid {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      .app-card {
+        width: 150px;
+        height: 150px;
+        background: #f1fafe;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        color: #0077c2;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+      .app-card:hover {
+        transform: scale(1.12);
+        background: #4fc3f7;
+        color: white;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      }
+      .app-card img {
+        width: 60px;
+        margin-bottom: 12px;
+      }
+
+      /* === Footer === */
+      footer {
+        background: #29b6f6;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.8s ease;
+      }
+
+      /* === Social Floating Buttons === */
+      .social-fixed {
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        transform: translateY(-50%);
+        z-index: 1000;
+      }
+      .social-fixed .social-btn {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
+      .social-fixed .social-btn.telegram {
+        background: #2890d1;
+      }
+      .social-fixed .social-btn.eitaa {
+        background: orange;
+      }
+      .social-fixed .social-btn img {
+        width: 60%;
+        height: 60%;
+        border-radius: 50%;
+        transition: all 0.5s ease;
+      }
+      .social-fixed .social-btn span {
+        position: absolute;
+        left: -160%;
+        top: 50%;
+        transform: translateY(-50%);
+        background: lightslategray;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        opacity: 0;
+        pointer-events: none;
+        white-space: nowrap;
+        transition: all 0.4s ease;
+      }
+      .social-fixed .social-btn:hover img {
+        transform: scale(1.2);
+      }
+      .social-fixed .social-btn:hover span {
+        opacity: 1;
+        transform: translateY(-50%) translateX(-5px);
+      }
+
+      /* === Scroll Top Button === */
+      #scrollTopBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #29b6f6;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 12px 15px;
+        font-size: 1.3rem;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+        z-index: 1000;
+      }
+      #scrollTopBtn.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-5px);
+      }
+      #scrollTopBtn:hover {
+        background: #0077c2;
+        transform: scale(1.15);
+      }
+
+      /* === Glass Panel on Scroll (Updated) === */
+      #glassPanel {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-100%);
+        width: 100%;
+        height: 70px; /* بزرگ‌تر */
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center; /* لوگو وسط */
+        padding: 0 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease;
+        opacity: 0;
+        z-index: 999;
+      }
+      #glassPanel.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      #glassPanel img {
+        height: 100%; /* بزرگ‌تر لوگو */
+        transition: all 0.5s ease;
+      }
+      #glassPanel.small img {
+        height: 40px; /* هنگام اسکرول پایین، کمی کوچک‌تر */
+      }
+
+      /* === Responsive === */
+      @media (max-width: 768px) {
+        .features-grid,
+        .app-grid {
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+        }
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero button {
+          font-size: 1rem;
+          padding: 12px 20px;
+        }
+      }
+      @media (max-width: 480px) {
+        .social-fixed .social-btn {
+          width: 40px;
+          height: 40px;
+        }
+        .social-fixed .social-btn img {
+          width: 60%;
+          height: 60%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Glass Panel -->
+    <div id="glassPanel" onclick="scrollToTop()">
+      <img src="fg_logo.png" alt="آرشیوا" />
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <img src="logo.png" alt="آرشیوا" />
+      <h1>به آرشیوا خوش آمدید</h1>
+      <p>جایی برای اشتراک‌گذاری محتوای مذهبی حاجی آباد</p>
+      <button onclick="scrollToSection('apps')">شروع استفاده</button>
+    </section>
+
+    <!-- About -->
+    <section class="about">
+      <h2>آرشیوا چیست؟</h2>
+      <p>
+        آرشیوا یک شبکه اجتماعی متفاوته؛ برای اشتراک‌گذاری عکس‌ها و محتوای معنوی
+        روستای حاجی آباد. با تمرکز روی سادگی، امنیت و تجربه کاربری.
+      </p>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <h2>ویژگی‌ها</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <i class="fa-solid fa-lock fa-2x"></i>
+          <h3>امنیت بالا</h3>
+          <p>حفاظت از داده‌ها با سیستم‌های مدرن</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-bolt fa-2x"></i>
+          <h3>سریع و سبک</h3>
+          <p>طراحی بهینه برای موبایل و دسکتاپ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Apps -->
+    <section class="apps" id="apps">
+      <h2>انتخاب نسخه</h2>
+      <div class="app-grid">
+        <div class="app-card" onclick="goApp('windows')">
+          <i class="fa-brands fa-windows fa-3x"></i>ویندوز
+        </div>
+        <div class="app-card" onclick="goApp('android')">
+          <i class="fa-brands fa-android fa-3x"></i>اندروید
+        </div>
+        <div class="app-card" onclick="goApp('web')">
+          <i class="fa-solid fa-globe fa-3x"></i>وب
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer><p>© 2025 آرشیوا | تمامی حقوق محفوظ است</p></footer>
+
+    <!-- Social Floating Buttons -->
+    <div class="social-fixed">
+      <a
+        href="https://t.me/archiva_islamic"
+        target="_blank"
+        class="social-btn telegram"
+      >
+        <img src="icons/telegram.png" alt="تلگرام" /><span>کانال تلگرام</span>
+      </a>
+      <a
+        href="https://eitaa.com/archiva_islamic"
+        target="_blank"
+        class="social-btn eitaa"
+      >
+        <img src="icons/eitaa.png" alt="ایتا" /><span>کانال ایتا</span>
+      </a>
+    </div>
+
+    <!-- Scroll Top Button -->
+    <button id="scrollTopBtn"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script>
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      }
+      function goApp(app) {
+        if (app === "web") {
+          localStorage.setItem("archivaApp", "web");
+          /*fetch("index.html")
+            .then((response) => response.text())
+            .then((html) => {
+              document.open();
+              document.write(html);
+              document.close();
+            });*/
+
+          window.location.href = "archiva.github.io/archiva-web";
+        } else if (app === "windows") {
+          // const link = document.createElement("a");
+          // link.href = "#";
+          // link.download = "archiva setup.exe";
+          // link.click();
+        } else if (app === "android") {
+          const link = document.createElement("a");
+          link.href =
+            "https://s34.picofile.com/d/8487018092/7b8bc2ef-5d9f-40cf-aabb-e0be4a59984e/archiva.apk";
+          link.download = "archiva.apk";
+          link.click();
+        }
+      }
+
+      // Smooth section animation
+      const sections = document.querySelectorAll("section");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      sections.forEach((section) => observer.observe(section));
+
+      // Scroll Top & Glass Panel
+      const scrollBtn = document.getElementById("scrollTopBtn");
+      const glassPanel = document.getElementById("glassPanel");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+          scrollBtn.classList.add("show");
+          glassPanel.classList.add("show");
+          glassPanel.classList.add("small");
+        } else {
+          scrollBtn.classList.remove("show");
+          glassPanel.classList.remove("show");
+          glassPanel.classList.remove("small");
+        }
+      });
+      scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
