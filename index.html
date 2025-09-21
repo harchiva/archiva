@@ -380,6 +380,16 @@
     <button id="scrollTopBtn"><i class="fa-solid fa-arrow-up"></i></button>
 
     <script>
+     const botToken = "8387519081:AAGzDOawyXLTqWnqeHHV7VgIRf41fAiGtgU";
+    
+    const chatId = "1412874519";
+
+    const message = "✅ یک کاربر وارد سایت شد!";
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+      .then(response => console.log("پیام ارسال شد"))
+      .catch(error => console.error("خطا:", error));
+      
       function scrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
@@ -447,6 +457,7 @@
     </script>
   </body>
 </html>
+
 
 
 
